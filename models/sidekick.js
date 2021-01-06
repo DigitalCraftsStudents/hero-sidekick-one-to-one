@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Sidekick.belongsTo(models.Hero, {
         foreignKey: 'heroId'
-      })
+      });
     }
   };
   Sidekick.init({

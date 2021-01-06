@@ -89,17 +89,21 @@ The associations can be described like this:
 #### `models/sidekick.js`
 
 ```js
-Sidekick.belongsTo(models.Hero, {
-    foreignKey: 'heroId'
-});
+    static associate(models) {
+        Sidekick.belongsTo(models.Hero, {
+            foreignKey: 'heroId'
+        });
+    }
 ```
 
 #### `models/hero.js`
 
 ```js
-Hero.hasOne(models.Sidekick, {
-    foreignKey: 'heroId'
-});
+    static associate(models) {
+        Hero.hasOne(models.Sidekick, {
+            foreignKey: 'heroId'
+        });
+    }
 ```
 
 ### Migrate the database
