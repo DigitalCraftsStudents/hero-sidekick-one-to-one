@@ -228,3 +228,11 @@ Goal: associate a specific Sidekick with a specific Hero
 
 
 ### Process the form data and associate that Sidekick with that Hero
+
+### How do I filter out Sidekicks that are already taken?
+
+`Op` contains comparison operators.
+
+```js
+const { Op } = require('sequelize');
+```

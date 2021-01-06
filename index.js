@@ -16,6 +16,8 @@ app.use(logger);
 
 app.use(express.urlencoded({ extended: true }));
 
+// Op contains comparison operators
+const { Op } = require('sequelize');
 const { Hero, Sidekick } = require('./models');
 const { layout } = require('./utils');
 
@@ -45,6 +47,11 @@ app.get('/hero/:id/sidekick', async (req, res) => {
     const sidekicks = await Sidekick.findAll({
         // Later: do that thing Rob requested: don't show
         // sidekicks that are taken.
+        where: {
+            heroId: {
+                [Op.eq]: null
+            }
+        },
         order: [
             ['name', 'asc']
         ]
