@@ -1,0 +1,8 @@
+${header}
+<h1>All Heroes!</h1>
+<ul>
+${
+    heroes.map(h => `<li>${h.name}</li>`).join('')
+}
+</ul>
+${footer}

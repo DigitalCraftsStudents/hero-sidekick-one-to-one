@@ -195,6 +195,8 @@ The `null, 4` arguments are for indentation.
 
 #### Show list in template!
 
+
+- set up the template engine in `index.js`
 - mkdir `templates`
 - mkdir `templates/partials` (with header.html and footer.html)
 - touch `utils.js` with partials "layout" object
