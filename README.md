@@ -216,4 +216,13 @@ const heroes = await Hero.findAll({
 ```
 
 ### Show a form that lists all Sidekicks
+
+Goal: associate a specific Sidekick with a specific Hero
+
+- get a list of all sidekicks
+- res.render() a list
+- convert that list to dropdown
+    - use the Sidekick id for the value, but show their name
+
+
 ### Process the form data and associate that Sidekick with that Hero
