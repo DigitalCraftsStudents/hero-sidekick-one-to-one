@@ -24,6 +24,7 @@ touch index.js
 
 ### make it dotenv-aware
 
+- if there is an example env file (usually named `dist.env`), make a copy and name it `.env`
 - `echo ".env" >> .gitignore`
 - `touch .sequelizerc` (or copy from another project!)
 - `npx sequelize init`
@@ -38,9 +39,68 @@ touch index.js
 
 ### Generate models
 
+- Hero is standalone
+- Sidekick depends on hero, has a FK that points to them
+
+```sh
+npx sequelize model:generate --name Hero --attributes name:string
+npx sequelize model:generate --name Sidekick --attributes 'name:string,heroId:integer'
+```
+
+#### (optional) Migrate any standalone tables
+
+To confirm database connection is good.
+
+```sh
+npx sequelize db:migrate
+```
+
+
 ### Set up my FK
 
+The Sidekick points to the Hero using the Sidekick's `heroId`.
+We need to tell Sequelize about this in the `models/sidekick.js`
+
+```js
+  Sidekick.init({
+    name: DataTypes.STRING,
+    heroId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Hero',
+        key: 'id'
+      }
+    }
+```
+
 ### Define the assoications
+
+Always define both sides of the association!
+That way, Sequelize can:
+
+- create "magic methods"
+- handle clean up and error checking
+
+The associations can be described like this:
+
+- A Hero has one (and only one) Sidekick
+- A Sidekick belongs to one (and only one) Hero
+
+#### `models/sidekick.js`
+
+```js
+Sidekick.belongsTo(models.Hero, {
+    foreignKey: 'heroId'
+});
+```
+
+#### `models/hero.js`
+
+```js
+Hero.hasOne(models.Sidekick, {
+    foreignKey: 'heroId'
+});
+```
 
 ### Migrate the database
 
