@@ -193,6 +193,14 @@ console.log(JSON.stringify(heroes, null, 4));
 
 The `null, 4` arguments are for indentation.
 
+#### Show list in template!
+
+- mkdir `templates`
+- mkdir `templates/partials` (with header.html and footer.html)
+- touch `utils.js` with partials "layout" object
+    - easily include header and footer when I `res.render()`
+- create a template for listing heroes `list.html`
+    - `.map().join('')` into a String
 
 ### Show a form that lists all Sidekicks
 ### Process the form data and associate that Sidekick with that Hero
