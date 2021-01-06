@@ -9,8 +9,19 @@ const server = http.createServer(app);
 const logger = morgan('dev');
 app.use(logger);
 
+const { Hero } = require('./models');
+
+app.get('/list', async (req, res) => {
+    const heroes = await Hero.findAll();
+    // console.log() of the heroes array
+    console.log(JSON.stringify(heroes, null, 4));
+    res.json(heroes);
+    //res.send('this should be a list of heroes');
+});
 app.get('/', (req, res) => {
-    res.send(`<h1>Hello there!</h1>`);
+    res.send(`
+        <h1>Hello there!</h1>
+    `);
 });
 
 server.listen(PORT, () => {

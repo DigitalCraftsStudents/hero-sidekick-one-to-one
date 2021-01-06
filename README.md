@@ -174,8 +174,25 @@ npx sequelize db:seed:undo:all
 npx sequelize db:seed:all
 ```
 
-
-
-
-
 ## Call Sequelize Models from Controllers functions!
+
+### List all a Heroes
+
+- require the Hero model
+- call Hero.findAll()
+    - console.log() the result
+- `res.send()` (or `res.json()`) that array back to the browser
+
+#### To see a nice version of your data in `console.log()`
+
+```js
+console.log(JSON.stringify(heroes, null, 4));
+```
+
+`JSON.stringify()` will take objects and arrays and simple variables (not functions!) and make it a human-readable string.
+
+The `null, 4` arguments are for indentation.
+
+
+### Show a form that lists all Sidekicks
+### Process the form data and associate that Sidekick with that Hero
