@@ -204,5 +204,16 @@ The `null, 4` arguments are for indentation.
 - create a template for listing heroes `list.html`
     - `.map().join('')` into a String
 
+### How do I list heroes alphabetically?
+
+```js
+const heroes = await Hero.findAll({
+    order: [
+        // column to order by, followed the "direction"
+        ['name', 'desc']
+    ]
+});
+```
+
 ### Show a form that lists all Sidekicks
 ### Process the form data and associate that Sidekick with that Hero
