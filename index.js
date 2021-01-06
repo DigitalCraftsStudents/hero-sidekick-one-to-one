@@ -14,11 +14,14 @@ app.set('view engine', 'html');
 const logger = morgan('dev');
 app.use(logger);
 
+app.use(express.urlencoded({ extended: true }));
+
 const { Hero, Sidekick } = require('./models');
 const { layout } = require('./utils');
 
 app.get('/list', async (req, res) => {
     const heroes = await Hero.findAll({
+        include: Sidekick,
         order: [
             ['name', 'asc']
         ]
@@ -55,6 +58,19 @@ app.get('/hero/:id/sidekick', async (req, res) => {
         ...layout
     });
 });
+app.post('/hero/:id/sidekick', async (req, res) => {
+    const { id } = req.params;
+    const { sidekickId } = req.body;
+    const hero = await Hero.findByPk(id);
+    //const sidekick = await Sidekick.findByPk(sidekickId);
+    // we associate the Hero and the Sidekick
+    await hero.setSidekick(sidekickId);
+    //await hero.setSidekick(sidekick); // alternatively, pass a Sidekick obj
+    await hero.save();
+
+    res.redirect('/list');
+});
+
 
 app.get('/', (req, res) => {
     res.send(`

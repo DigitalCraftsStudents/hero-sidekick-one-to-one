@@ -1,3 +1,20 @@
 ${header}
 <h1>Hello ${hero.name}, please choose a new Sidekick:</h1>
+
+<form method="POST">
+    <select name="sidekickId">
+        ${
+            sidekicks.map(s => `
+    
+                <option value="${s.id}">
+                    ${s.name}
+                </option>
+            
+            
+            `).join('')
+        }
+    </select>
+    <br><br>
+    <input type="submit" value="set sidekick">
+</form>
 ${footer}

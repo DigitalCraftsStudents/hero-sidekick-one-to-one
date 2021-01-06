@@ -8,6 +8,10 @@ ${
             <a href="/hero/${h.id}/sidekick">
                 ${h.name}
             </a>
+
+            ${
+                h.Sidekick ? h.Sidekick.name : ''
+            }
         </li>
     
     `).join('')
