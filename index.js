@@ -45,8 +45,8 @@ app.get('/hero/:id/sidekick', async (req, res) => {
     const hero = await Hero.findByPk(id);
     // get list of sidekicks from database
     const sidekicks = await Sidekick.findAll({
-        // Later: do that thing Rob requested: don't show
-        // sidekicks that are taken.
+        // This filters out any Sidekicks that are
+        // already assigned to a Hero
         where: {
             heroId: {
                 [Op.eq]: null
