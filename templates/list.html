@@ -2,7 +2,15 @@ ${header}
 <h1>All Heroes!</h1>
 <ul>
 ${
-    heroes.map(h => `<li>${h.name}</li>`).join('')
+    heroes.map(h => `
+    
+        <li>
+            <a href="/hero/${h.id}/sidekick">
+                ${h.name}
+            </a>
+        </li>
+    
+    `).join('')
 }
 </ul>
 ${footer}

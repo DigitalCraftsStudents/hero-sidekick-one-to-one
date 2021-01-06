@@ -219,8 +219,10 @@ const heroes = await Hero.findAll({
 
 Goal: associate a specific Sidekick with a specific Hero
 
+- `app.get('/hero/:id/sidekick')`
+- require Sidekick from models
 - get a list of all sidekicks
-- res.render() a list
+- res.render() a new template: `form.html`
 - convert that list to dropdown
     - use the Sidekick id for the value, but show their name
 

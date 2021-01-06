@@ -36,6 +36,8 @@ app.get('/list', async (req, res) => {
 });
 
 app.get('/hero/:id/sidekick', async (req, res) => {
+    const { id } = req.params;
+    const hero = await Hero.findByPk(id);
     // get list of sidekicks from database
     const sidekicks = await Sidekick.findAll({
         // Later: do that thing Rob requested: don't show
@@ -45,7 +47,13 @@ app.get('/hero/:id/sidekick', async (req, res) => {
         ]
     });
     console.log(JSON.stringify(sidekicks, null, 4));
-    res.send(sidekicks);
+    res.render('form', {
+        locals: {
+            hero,
+            sidekicks
+        },
+        ...layout
+    });
 });
 
 app.get('/', (req, res) => {
