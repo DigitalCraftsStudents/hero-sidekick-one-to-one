@@ -236,3 +236,16 @@ Goal: associate a specific Sidekick with a specific Hero
 ```js
 const { Op } = require('sequelize');
 ```
+
+```js
+    const sidekicks = await Sidekick.findAll({
+        where: {
+            heroId: {
+                [Op.eq]: null
+            }
+        },
+        order: [
+            ['name', 'asc']
+        ]
+    });
+```

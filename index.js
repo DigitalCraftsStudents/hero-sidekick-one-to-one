@@ -47,11 +47,11 @@ app.get('/hero/:id/sidekick', async (req, res) => {
     const sidekicks = await Sidekick.findAll({
         // This filters out any Sidekicks that are
         // already assigned to a Hero
-        where: {
-            heroId: {
-                [Op.eq]: null
-            }
-        },
+        // where: {
+        //     heroId: {
+        //         [Op.eq]: null
+        //     }
+        // },
         order: [
             ['name', 'asc']
         ]
